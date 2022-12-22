@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pickle
 from scipy.signal import butter, lfilter
 from sklearn.svm import SVC
+from scipy import stats as st
 
 import random
 import os
@@ -38,9 +39,51 @@ x_seizure = x_seizure_filtered
 
 x = np.concatenate((x_normal,x_seizure))
 y = np.concatenate((np.zeros((400,1)),np.ones((100,1))))
-
 # print(x.shape)
 # print(y.shape)
+
+####################### Feature Extraction ############################
+# Statistical features: mean, std, max, min, median, variance, skewness, kurtosis, mode
+mean = np.mean(x, axis=1)
+plt.plot(mean)
+# plt.show()
+
+std = np.std(x, axis=1)
+plt.plot(std)
+# plt.show()
+
+max = np.max(x, axis=1)
+plt.plot(max)
+# plt.show()
+
+min = np.min(x, axis=1)
+plt.plot(min)
+# plt.show()
+
+median = np.median(x, axis=1)
+plt.plot(median)
+# plt.show()
+
+var = np.var(x, axis=1)
+plt.plot(var)
+# plt.show()
+
+skewness = st.skew(x, axis=1)
+plt.plot(skewness)
+# plt.show()
+
+kurtosis = st.kurtosis(x, axis=1)
+plt.plot(kurtosis)
+# plt.show()
+
+# mode = []
+# for row in x:
+#     mode.append(st.mode(row)[0][0])
+# mode = np.array(mode)
+# print(mode.shape)
+# print(mode)
+# plt.plot(mode)
+# plt.show()
 
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
