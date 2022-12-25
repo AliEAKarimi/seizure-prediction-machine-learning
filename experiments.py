@@ -185,11 +185,11 @@ plot(x_visualized, 'X Visualized')
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
 kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
-kf.get_n_splits(x)
+kf.get_n_splits(x_visualized)
 # print(kf)
-for train_index, test_index in kf.split(x):
+for train_index, test_index in kf.split(x_visualized):
     # print("TRAIN:", train_index, "TEST:", test_index)
-    x_train, x_test = x[train_index], x[test_index]
+    x_train, x_test = x_visualized[train_index], x_visualized[test_index]
     y_train, y_test = y[train_index], y[test_index]
 # print(x_test.shape)
 
