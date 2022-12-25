@@ -1,6 +1,7 @@
 import numpy as np
+from sklearn import metrics
 from sklearn.model_selection import train_test_split, KFold
-from sklearn.metrics import accuracy_score, recall_score, precision_score, roc_auc_score, roc_curve
+from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, precision_score, roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
 import pickle
 from scipy.signal import butter, lfilter
@@ -228,7 +229,7 @@ knn_y_pred = knn_clf.predict(x_test)
 evaluation(y_test,knn_y_pred)
 
 # Drawing ROC curve
-y_score = svm_clf.predict_proba(x_test)[::,1]
+y_score = linear_svm_clf.predict_proba(x_test)[::,1]
 false_positive_rate, true_positive_rate, threshold = roc_curve(y_test,  y_score)
 auc = roc_auc_score(y_test, y_score)
 plt.plot(false_positive_rate,true_positive_rate,label="auc="+str(auc))
