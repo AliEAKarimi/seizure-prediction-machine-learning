@@ -105,6 +105,78 @@ plot(peak_to_peak, 'peak_to_peak')
 average_absolute_signal_slope = np.mean(np.abs(np.diff(x, axis=1)), axis=1)
 plot(average_absolute_signal_slope, 'average_absolute_signal_slope')
 
+# Frequency domain features: Delta, Theta, Alpha, Beta, Gamma
+def bandpower(data, sf, band, window_sec=None, relative=False):
+    """Compute the average power of the signal x in a specific frequency band.
+    Parameters
+    ----------
+    data : 1d-array
+        Input signal in the time-domain.
+    sf : float
+        Sampling frequency of the data.
+    band : list
+        Lower and upper frequencies of the band of interest.
+    window_sec : float
+        Length of each window in seconds.
+        If window_sec=None, window_sec = (1 / min(band)) * 2
+    relative : bool
+        If relative is True, return the relative power (= divided by the total power of the signal).
+    Returns
+    -------
+    bp : float
+        Absolute or relative band power.
+    """
+    from scipy.signal import welch
+    from scipy.integrate import simps
+
+    band = np.asarray(band)
+    low, high = band
+
+    # Define window length
+    if window_sec is not None:
+        nperseg = window_sec * sf
+    else:
+        nperseg = (2 / low) * sf
+
+    # Compute the modified periodogram (Welch)
+    freqs, psd = welch(data, sf, nperseg=nperseg)
+
+    # Frequency resolution
+    freq_res = freqs[1] - freqs[0]
+
+    # Find closest indices of band in frequency vector
+    idx_band = np.logical_and(freqs >= low, freqs <= high)
+
+    # Integral approximation of the spectrum using Simpson's rule.
+    bp = simps(psd[idx_band], dx=freq_res)
+
+    if relative:
+        bp /= simps(psd, dx=freq_res)
+    return bp
+
+delta = []
+theta = []
+alpha = []
+beta = []
+gamma = []
+
+for row in x:
+    delta.append(bandpower(row, 128, [0.5, 4], 4))
+    theta.append(bandpower(row, 128, [4, 8], 4))
+    alpha.append(bandpower(row, 128, [8, 13], 4))
+    beta.append(bandpower(row, 128, [13, 30], 4))
+    gamma.append(bandpower(row, 128, [30, 50], 4))
+delta = np.array(delta)
+theta = np.array(theta)
+alpha = np.array(alpha)
+beta = np.array(beta)
+gamma = np.array(gamma)
+plot(delta, 'delta')
+plot(theta, 'theta')
+plot(alpha, 'alpha')
+plot(beta, 'beta')
+plot(gamma, 'gamma')
+
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
 kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
