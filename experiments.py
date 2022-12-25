@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.model_selection import train_test_split, KFold
-from sklearn.metrics import accuracy_score, recall_score, precision_score
+from sklearn.metrics import accuracy_score, recall_score, precision_score, roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
 import pickle
 from scipy.signal import butter, lfilter
@@ -202,7 +202,7 @@ for train_index, test_index in kf.split(x_visualized):
 
 ####################### Classification #######################
 # using SVM
-svm_clf = SVC(kernel='linear')
+svm_clf = SVC(kernel='linear', probability=True)
 svm_clf.fit(x_train, y_train)
 y_pred = svm_clf.predict(x_test)
 evaluation(y_test,y_pred)
@@ -218,3 +218,12 @@ knn_clf = KNeighborsClassifier(n_neighbors=2)
 knn_clf.fit(x_train, y_train)
 y_pred = knn_clf.predict(x_test)
 evaluation(y_test,y_pred)
+
+# Drawing ROC curve
+y_score = svm_clf.predict_proba(x_test)[::,1]
+false_positive_rate, true_positive_rate, threshold = roc_curve(y_test,  y_score)
+auc = roc_auc_score(y_test, y_score)
+plt.plot(false_positive_rate,true_positive_rate,label="auc="+str(auc))
+plt.ylabel('True Positive Rate')
+plt.xlabel('False Positive Rate')
+plt.show()
