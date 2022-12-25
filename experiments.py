@@ -75,7 +75,7 @@ plot(kurtosis, 'kurtosis')
 
 # mode = []
 # for row in x:
-#     mode.append(st.mode(row)[0][0])
+#     mode.append(st.mode(row, keepdims=True)[0][0])
 # mode = np.array(mode)
 # print(mode.shape)
 # print(mode)
