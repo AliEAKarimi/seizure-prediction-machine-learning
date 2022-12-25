@@ -8,11 +8,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from scipy import stats as st
 from sklearn.ensemble import RandomForestClassifier
-
 import random
 import os
 seed = 57
-
 random.seed(seed)
 os.environ['PYTHONHASHSEED'] = str(seed)
 np.random.seed(seed)
@@ -23,8 +21,7 @@ y = pickle.load(open('y.pkl', 'rb'))
 
 x_normal = np.concatenate((x[:300], x[400:]), axis=0)
 x_seizure = x[300:400]
-# print(x_normal.shape)
-# print(x_seizure.shape)
+
 sampling_freq = 173.6 #based on info from website
 
 b, a = butter(3, [0.5,40], btype='bandpass',fs=sampling_freq)
@@ -32,17 +29,12 @@ b, a = butter(3, [0.5,40], btype='bandpass',fs=sampling_freq)
 
 x_normal_filtered = np.array([lfilter(b,a,x_normal[ind,:]) for ind in range(x_normal.shape[0])])
 x_seizure_filtered = np.array([lfilter(b,a,x_seizure[ind,:]) for ind in range(x_seizure.shape[0])])
-# print(x_normal.shape)
-# print(x_seizure.shape)
-
 
 x_normal = x_normal_filtered
 x_seizure = x_seizure_filtered
 
 x = np.concatenate((x_normal,x_seizure))
 y = np.concatenate((np.zeros((400,1)),np.ones((100,1))))
-# print(x.shape)
-# print(y.shape)
 
 def plot(x, title):
     plt.plot(x)
