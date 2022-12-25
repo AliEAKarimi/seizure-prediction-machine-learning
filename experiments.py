@@ -202,19 +202,19 @@ for train_index, test_index in kf.split(x_visualized):
 
 ####################### Classification #######################
 # using SVM
-clf = SVC(kernel='linear')
-clf.fit(x_train, y_train)
-y_pred = clf.predict(x_test)
+svm_clf = SVC(kernel='linear')
+svm_clf.fit(x_train, y_train)
+y_pred = svm_clf.predict(x_test)
 evaluation(y_test,y_pred)
 
 # using Random Forest
-clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
-clf.fit(x_train, y_train)
-y_pred = clf.predict(x_test)
+random_forest_clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
+random_forest_clf.fit(x_train, y_train)
+y_pred = random_forest_clf.predict(x_test)
 evaluation(y_test,y_pred)
 
 # using KNN
-clf = KNeighborsClassifier(n_neighbors=2)
-clf.fit(x_train, y_train)
-y_pred = clf.predict(x_test)
+knn_clf = KNeighborsClassifier(n_neighbors=2)
+knn_clf.fit(x_train, y_train)
+y_pred = knn_clf.predict(x_test)
 evaluation(y_test,y_pred)
