@@ -49,6 +49,11 @@ def plot(x, title):
     # plt.title(title)
     # plt.show()
 
+def evaluation(test, pred):
+    print('Accuracy: ', accuracy_score(test, pred))
+    print('Recall: ', recall_score(test, pred))
+    print('Precision: ', precision_score(test, pred))
+
 ####################### Feature Extraction #######################
 # Statistical features: mean, std, max, min, median, variance, skewness, kurtosis, mode
 mean = np.mean(x, axis=1)
@@ -200,16 +205,16 @@ for train_index, test_index in kf.split(x_visualized):
 clf = SVC(kernel='linear')
 clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
-print(accuracy_score(y_test,y_pred))
+evaluation(y_test,y_pred)
 
 # using Random Forest
 clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
 clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
-print(accuracy_score(y_test,y_pred))
+evaluation(y_test,y_pred)
 
 # using KNN
 clf = KNeighborsClassifier(n_neighbors=2)
 clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
-print(accuracy_score(y_test,y_pred))
+evaluation(y_test,y_pred)
