@@ -42,39 +42,36 @@ y = np.concatenate((np.zeros((400,1)),np.ones((100,1))))
 # print(x.shape)
 # print(y.shape)
 
-####################### Feature Extraction ############################
+def plot(x, title):
+    plt.plot(x)
+    # plt.title(title)
+    # plt.show()
+
+####################### Feature Extraction #######################
 # Statistical features: mean, std, max, min, median, variance, skewness, kurtosis, mode
 mean = np.mean(x, axis=1)
-plt.plot(mean)
-# plt.show()
+plot(mean, 'mean')
 
 std = np.std(x, axis=1)
-plt.plot(std)
-# plt.show()
+plot(std, 'std')
 
 max = np.max(x, axis=1)
-plt.plot(max)
-# plt.show()
+plot(max, 'max')
 
 min = np.min(x, axis=1)
-plt.plot(min)
-# plt.show()
+plot(min, 'min')
 
 median = np.median(x, axis=1)
-plt.plot(median)
-# plt.show()
+plot(median, 'median')
 
 var = np.var(x, axis=1)
-plt.plot(var)
-# plt.show()
+plot(var, 'var')
 
 skewness = st.skew(x, axis=1)
-plt.plot(skewness)
-# plt.show()
+plot(skewness, 'skewness')
 
 kurtosis = st.kurtosis(x, axis=1)
-plt.plot(kurtosis)
-# plt.show()
+plot(kurtosis, 'kurtosis')
 
 # mode = []
 # for row in x:
