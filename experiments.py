@@ -73,14 +73,11 @@ plot(skewness, 'skewness')
 kurtosis = st.kurtosis(x, axis=1)
 plot(kurtosis, 'kurtosis')
 
-# mode = []
-# for row in x:
-#     mode.append(st.mode(row, keepdims=True)[0][0])
-# mode = np.array(mode)
-# print(mode.shape)
-# print(mode)
-# plt.plot(mode)
-# plt.show()
+mode = []
+for row in x:
+    mode.append(st.mode(row, keepdims=True)[0][0])
+mode = np.array(mode)
+plot(mode, 'mode')
 
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
