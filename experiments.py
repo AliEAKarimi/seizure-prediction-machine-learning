@@ -46,8 +46,8 @@ y = np.concatenate((np.zeros((400,1)),np.ones((100,1))))
 
 def plot(x, title):
     plt.plot(x)
-    # plt.title(title)
-    # plt.show()
+    plt.title(title)
+    plt.show()
 
 def evaluation(test, pred):
     print('Accuracy: ', accuracy_score(test, pred))
