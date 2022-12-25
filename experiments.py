@@ -193,8 +193,12 @@ for train_index, test_index in kf.split(x_visualized):
     y_train, y_test = y[train_index], y[test_index]
 # print(x_test.shape)
 
+####################### Classification #######################
+# using SVM
 clf = SVC(kernel='linear')
 clf.fit(x_train, y_train)
+y_pred = clf.predict(x_test)
+print(accuracy_score(y_test,y_pred))
 
 y_pred = clf.predict(x_test)
 
