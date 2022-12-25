@@ -200,6 +200,9 @@ clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
 print(accuracy_score(y_test,y_pred))
 
+# using Random Forest
+clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
+clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
 
 print(accuracy_score(y_test,y_pred))
