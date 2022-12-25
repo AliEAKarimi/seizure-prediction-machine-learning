@@ -4,8 +4,10 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score
 import matplotlib.pyplot as plt
 import pickle
 from scipy.signal import butter, lfilter
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from scipy import stats as st
+from sklearn.ensemble import RandomForestClassifier
 
 import random
 import os
@@ -204,10 +206,10 @@ print(accuracy_score(y_test,y_pred))
 clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
 clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
-
 print(accuracy_score(y_test,y_pred))
 
-
-
-
-
+# using KNN
+clf = KNeighborsClassifier(n_neighbors=2)
+clf.fit(x_train, y_train)
+y_pred = clf.predict(x_test)
+print(accuracy_score(y_test,y_pred))
