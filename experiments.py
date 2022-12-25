@@ -177,6 +177,11 @@ plot(alpha, 'alpha')
 plot(beta, 'beta')
 plot(gamma, 'gamma')
 
+x_visualized = np.array([mean, std, max, min, median, var, skewness, kurtosis, mobility, complexity, peak_to_peak, average_absolute_signal_slope, delta, theta, alpha, beta, gamma])
+x_visualized = x_visualized.T
+#print(visualized_x.shape)
+plot(x_visualized, 'X Visualized')
+
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
 kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
