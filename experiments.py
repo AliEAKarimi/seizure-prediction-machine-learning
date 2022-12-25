@@ -79,6 +79,32 @@ for row in x:
 mode = np.array(mode)
 plot(mode, 'mode')
 
+# Time domain features: mobility, complexity, average absolute signal slope, peak-to-peak
+def hjorth_params(x, axis=-1):
+    x = np.asarray(x)
+    # Calculate derivatives
+    dx = np.diff(x, axis=axis)
+    ddx = np.diff(dx, axis=axis)
+    # Calculate variance
+    x_var = np.var(x, axis=axis)  # = activity
+    dx_var = np.var(dx, axis=axis)
+    ddx_var = np.var(ddx, axis=axis)
+    # Mobility and complexity
+    mob = np.sqrt(dx_var / x_var)
+    com = np.sqrt(ddx_var / dx_var) / mob
+    return mob, com
+
+mobility, complexity = hjorth_params(x)
+plot(mobility, 'mobility')
+plot(complexity, 'complexity')
+
+
+peak_to_peak = np.ptp(x, axis=1)
+plot(peak_to_peak, 'peak_to_peak')
+
+average_absolute_signal_slope = np.mean(np.abs(np.diff(x, axis=1)), axis=1)
+plot(average_absolute_signal_slope, 'average_absolute_signal_slope')
+
 # x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 
 kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
