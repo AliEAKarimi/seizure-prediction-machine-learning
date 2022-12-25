@@ -205,19 +205,19 @@ for train_index, test_index in kf.split(x_visualized):
 svm_clf = SVC(kernel='linear', probability=True)
 svm_clf.fit(x_train, y_train)
 svm_y_pred = svm_clf.predict(x_test)
-evaluation(y_test,y_pred)
+evaluation(y_test,svm_y_pred)
 
 # using Random Forest
 random_forest_clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
 random_forest_clf.fit(x_train, y_train)
 random_forest_y_pred = random_forest_clf.predict(x_test)
-evaluation(y_test,y_pred)
+evaluation(y_test,random_forest_y_pred)
 
 # using KNN
 knn_clf = KNeighborsClassifier(n_neighbors=2)
 knn_clf.fit(x_train, y_train)
 knn_y_pred = knn_clf.predict(x_test)
-evaluation(y_test,y_pred)
+evaluation(y_test,knn_y_pred)
 
 # Drawing ROC curve
 y_score = svm_clf.predict_proba(x_test)[::,1]
