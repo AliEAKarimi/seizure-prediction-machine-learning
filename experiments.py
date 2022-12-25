@@ -194,9 +194,25 @@ for train_index, test_index in kf.split(x_visualized):
 
 ####################### Classification #######################
 # using SVM
-svm_clf = SVC(kernel='linear', probability=True)
-svm_clf.fit(x_train, y_train)
-svm_y_pred = svm_clf.predict(x_test)
+# svm with linear kernel
+linear_svm_clf = SVC(kernel='linear')
+linear_svm_clf.fit(x_train, y_train)
+svm_y_pred = linear_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
+# svm with rbf kernel
+rbf_svm_clf = SVC(kernel='rbf')
+rbf_svm_clf.fit(x_train, y_train)
+svm_y_pred = rbf_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
+# svm with poly kernel
+poly_svm_clf = SVC(kernel='poly')
+poly_svm_clf.fit(x_train, y_train)
+svm_y_pred = poly_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
+# svm with sigmoid kernel
+sigmoid_svm_clf = SVC(kernel='sigmoid')
+sigmoid_svm_clf.fit(x_train, y_train)
+svm_y_pred = sigmoid_svm_clf.predict(x_test)
 evaluation(y_test,svm_y_pred)
 
 # using Random Forest
