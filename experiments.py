@@ -192,14 +192,22 @@ x_train, x_test, y_train, y_test = train_test_split(x_visualized,y,random_state=
 print(x_train.shape)
 print(x_test.shape)
 
-kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
-kf.get_n_splits(x_visualized)
-# print(kf)
-for train_index, test_index in kf.split(x_visualized):
-    # print("TRAIN:", train_index, "TEST:", test_index)
-    x_train, x_test = x_visualized[train_index], x_visualized[test_index]
-    y_train, y_test = y[train_index], y[test_index]
-# print(x_test.shape)
+from sklearn.metrics import make_scorer
+from sklearn.model_selection import cross_validate
+
+kf = KFold(n_splits=5, random_state=seed, shuffle=True)
+
+def cross_validation(clf, x, y):
+    scoring = {
+        'accuracy': make_scorer(accuracy_score),
+        'recall': make_scorer(recall_score),
+        'precision': make_scorer(precision_score),
+    }
+    scores = cross_validate(clf, x, y, cv=kf, scoring=scoring)
+    print(scores)
+    print('Accuracy: ', np.mean(scores['test_accuracy']))
+    print('Recall: ', np.mean(scores['test_recall']))
+    print('Precision: ', np.mean(scores['test_precision']))
 
 ####################### Classification #######################
 # using SVM
