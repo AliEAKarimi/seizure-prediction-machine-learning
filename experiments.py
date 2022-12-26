@@ -244,6 +244,10 @@ poly_svm_clf = SVC(kernel='poly')
 poly_svm_clf.fit(xx_train, yy_train)
 svm_y_pred = poly_svm_clf.predict(xx_test)
 evaluation(yy_test,svm_y_pred)
+# svm with poly kernel that used of train_test_split for splitting visualized data
+poly_svm_clf.fit(x_train, y_train)
+svm_y_pred = poly_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
 
 # svm with sigmoid kernel
 sigmoid_svm_clf = SVC(kernel='sigmoid')
