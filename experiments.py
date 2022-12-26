@@ -216,6 +216,10 @@ linear_svm_clf = SVC(kernel='linear')
 linear_svm_clf.fit(xx_train, yy_train)
 svm_y_pred = linear_svm_clf.predict(xx_test)
 evaluation(yy_test,svm_y_pred)
+# svm with linear kernel that used of train_test_split for splitting visualized data
+linear_svm_clf.fit(x_train, y_train)
+svm_y_pred = linear_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
 
 # svm with rbf kernel
 rbf_svm_clf = SVC(kernel='rbf')
