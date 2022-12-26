@@ -298,7 +298,7 @@ cross_validation(knn_clf, x, y)
 cross_validation(knn_clf, x_visualized, y)
 
 # Drawing ROC curve
-y_score = linear_svm_clf.predict_proba(x_test)[::,1]
+y_score = random_forest_clf.predict_proba(x_test)[::,1]
 false_positive_rate, true_positive_rate, threshold = roc_curve(y_test,  y_score)
 auc = roc_auc_score(y_test, y_score)
 plt.plot(false_positive_rate,true_positive_rate,label="auc="+str(auc))
