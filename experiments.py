@@ -250,6 +250,8 @@ svm_y_pred = poly_svm_clf.predict(x_test)
 evaluation(y_test,svm_y_pred)
 # svm with poly kernel that used of cross validation(k_fold) for splitting data
 cross_validation(poly_svm_clf, x, y)
+# svm with poly kernel that used of cross validation(k_fold) for splitting visualized data
+cross_validation(poly_svm_clf, x_visualized, y)
 
 # svm with sigmoid kernel
 sigmoid_svm_clf = SVC(kernel='sigmoid')
