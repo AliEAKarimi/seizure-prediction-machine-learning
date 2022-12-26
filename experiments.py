@@ -210,7 +210,6 @@ def cross_validation(clf, x, y):
     print('Recall: ', np.mean(scores['test_recall']))
     print('Precision: ', np.mean(scores['test_precision']))
 
-####################### Classification #######################
 # using SVM
 # svm with linear kernel
 linear_svm_clf = SVC(kernel='linear')
