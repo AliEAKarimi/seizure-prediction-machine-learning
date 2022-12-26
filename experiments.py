@@ -306,8 +306,8 @@ plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
 plt.show()
 
-# Drawing confusion matrix for svm_clf
-cm = confusion_matrix(y_test, svm_y_pred, normalize='true')
+# Drawing confusion matrix
+cm = confusion_matrix(y_test, random_forest_y_pred, normalize='true')
 cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[False, True])
 cm_display.plot()
 plt.title('Confusion matrix')
