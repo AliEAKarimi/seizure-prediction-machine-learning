@@ -273,7 +273,10 @@ random_forest_clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_
 random_forest_clf.fit(xx_train, yy_train)
 random_forest_y_pred = random_forest_clf.predict(xx_test)
 evaluation(yy_test,random_forest_y_pred)
-
+# random forest that used of train_test_split for splitting visualized data
+random_forest_clf.fit(x_train, y_train)
+random_forest_y_pred = random_forest_clf.predict(x_test)
+evaluation(y_test,random_forest_y_pred)
 
 # using KNN
 knn_clf = KNeighborsClassifier(n_neighbors=2)
