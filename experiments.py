@@ -258,6 +258,10 @@ sigmoid_svm_clf = SVC(kernel='sigmoid')
 sigmoid_svm_clf.fit(xx_train, yy_train)
 svm_y_pred = sigmoid_svm_clf.predict(xx_test)
 evaluation(yy_test,svm_y_pred)
+# svm with sigmoid kernel that used of train_test_split for splitting visualized data
+sigmoid_svm_clf.fit(x_train, y_train)
+svm_y_pred = sigmoid_svm_clf.predict(x_test)
+evaluation(y_test,svm_y_pred)
 
 # using Random Forest
 random_forest_clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
