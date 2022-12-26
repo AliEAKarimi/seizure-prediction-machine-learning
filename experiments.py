@@ -283,10 +283,11 @@ cross_validation(random_forest_clf, x, y)
 cross_validation(random_forest_clf, x_visualized, y)
 
 # using KNN
+# knn that used of train_test_split for splitting data
 knn_clf = KNeighborsClassifier(n_neighbors=2)
-knn_clf.fit(x_train, y_train)
-knn_y_pred = knn_clf.predict(x_test)
-evaluation(y_test,knn_y_pred)
+knn_clf.fit(xx_train, yy_train)
+knn_y_pred = knn_clf.predict(xx_test)
+evaluation(yy_test,knn_y_pred)
 
 # Drawing ROC curve
 y_score = linear_svm_clf.predict_proba(x_test)[::,1]
