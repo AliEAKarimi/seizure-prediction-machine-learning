@@ -277,6 +277,8 @@ evaluation(yy_test,random_forest_y_pred)
 random_forest_clf.fit(x_train, y_train)
 random_forest_y_pred = random_forest_clf.predict(x_test)
 evaluation(y_test,random_forest_y_pred)
+# random forest that used of cross validation(k_fold) for splitting data;
+cross_validation(random_forest_clf, x, y)
 
 # using KNN
 knn_clf = KNeighborsClassifier(n_neighbors=2)
