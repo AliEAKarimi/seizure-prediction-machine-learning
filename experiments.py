@@ -182,7 +182,15 @@ x_visualized = x_visualized.T
 #print(visualized_x.shape)
 plot(x_visualized, 'X Visualized')
 
-# x_train, x_test, y_train, y_test = train_test_split(x,y,random_state=seed,test_size=0.2)
+# using train_test_split to split data into train and test
+xx_train, xx_test, yy_train, yy_test = train_test_split(x,y,random_state=seed,test_size=0.2)
+print(xx_train.shape)
+print(xx_test.shape)
+
+# using train_test_split to split visualized data into train and test
+x_train, x_test, y_train, y_test = train_test_split(x_visualized,y,random_state=seed,test_size=0.2)
+print(x_train.shape)
+print(x_test.shape)
 
 kf  = KFold(n_splits=5,random_state=seed,shuffle=True)
 kf.get_n_splits(x_visualized)
