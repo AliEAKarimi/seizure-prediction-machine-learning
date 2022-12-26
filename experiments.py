@@ -264,6 +264,8 @@ svm_y_pred = sigmoid_svm_clf.predict(x_test)
 evaluation(y_test,svm_y_pred)
 # svm with sigmoid kernel that used of cross validation(k_fold) for splitting data;
 cross_validation(sigmoid_svm_clf, x, y)
+# svm with sigmoid kernel that used of cross validation(k_fold) for splitting data;
+cross_validation(sigmoid_svm_clf, x_visualized, y)
 
 # using Random Forest
 random_forest_clf = RandomForestClassifier(n_estimators=100, max_depth=2,random_state=seed)
