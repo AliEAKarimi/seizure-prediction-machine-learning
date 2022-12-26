@@ -225,11 +225,12 @@ cross_validation(linear_svm_clf, x, y)
 # svm with linear kernel that used of cross validation(k_fold) for splitting visualized data
 cross_validation(linear_svm_clf, x_visualized, y)
 
-# svm with rbf kernel
+# svm with rbf kernel that used of train_test_split for splitting data
 rbf_svm_clf = SVC(kernel='rbf')
-rbf_svm_clf.fit(x_train, y_train)
-svm_y_pred = rbf_svm_clf.predict(x_test)
-evaluation(y_test,svm_y_pred)
+rbf_svm_clf.fit(xx_train, yy_train)
+svm_y_pred = rbf_svm_clf.predict(xx_test)
+evaluation(yy_test,svm_y_pred)
+
 # svm with poly kernel
 poly_svm_clf = SVC(kernel='poly')
 poly_svm_clf.fit(x_train, y_train)
