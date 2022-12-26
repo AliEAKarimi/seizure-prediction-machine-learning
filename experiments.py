@@ -220,6 +220,8 @@ evaluation(yy_test,svm_y_pred)
 linear_svm_clf.fit(x_train, y_train)
 svm_y_pred = linear_svm_clf.predict(x_test)
 evaluation(y_test,svm_y_pred)
+# svm with linear kernel that used of cross validation(k_fold) for splitting data
+cross_validation(linear_svm_clf, x, y)
 
 # svm with rbf kernel
 rbf_svm_clf = SVC(kernel='rbf')
