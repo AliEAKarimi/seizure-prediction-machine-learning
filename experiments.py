@@ -294,6 +294,8 @@ knn_y_pred = knn_clf.predict(x_test)
 evaluation(y_test,knn_y_pred)
 # knn that used of cross validation(k_fold) for splitting data;
 cross_validation(knn_clf, x, y)
+# knn that used of cross validation(k_fold) for splitting visualized data;
+cross_validation(knn_clf, x_visualized, y)
 
 # Drawing ROC curve
 y_score = linear_svm_clf.predict_proba(x_test)[::,1]
