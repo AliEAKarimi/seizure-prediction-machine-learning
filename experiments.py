@@ -182,6 +182,7 @@ x_visualized = x_visualized.T
 #print(visualized_x.shape)
 plot(x_visualized, 'X Visualized')
 
+####################### Classification #######################
 # using train_test_split to split data into train and test
 xx_train, xx_test, yy_train, yy_test = train_test_split(x,y,random_state=seed,test_size=0.2)
 print(xx_train.shape)
